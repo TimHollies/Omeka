@@ -7,6 +7,8 @@
  * @package Omeka
  */
 
+require __DIR__ . '/vendor/autoload.php';
+
 // Define the current version of Omeka.
 define('OMEKA_VERSION', '2.4.1');
 

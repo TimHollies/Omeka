@@ -1,0 +1,12 @@
+{
+    "name": "tim/omeka",
+    "authors": [
+        {
+            "name": "Tim Hollies",
+            "email": "tim.hollies@warwick.ac.uk"
+        }
+    ],
+    "require": {
+        "twig/twig": "^1.24"
+    }
+}

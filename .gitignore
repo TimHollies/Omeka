@@ -38,3 +38,5 @@
 .buildpath
 .project
 .settings/
+
+/vendor/
