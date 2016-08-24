@@ -105,6 +105,13 @@ class Theme
     public $omeka_minimum_version;
 
     /**
+     * The templating engine to use
+     *
+     * @var string
+     */
+    public $template_engine;
+
+    /**
      * Set the INI and file data for the theme, given its directory name.
      *
      * @param string $themeName Directory name.

@@ -20,4 +20,9 @@ $application->getBootstrap()->setOptions(array(
         )
     )
 ));
+
+if($dir === "admin") {
+    Zend_Controller_Front::getInstance()->setParam('admin', true);
+}
+
 $application->initialize()->run();

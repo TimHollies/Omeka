@@ -876,6 +876,50 @@ class Zend_Controller_Front
             $this->setResponse($response);
         }
 
+        /*
+        * Aweful Hack - TODO: make less aweful
+        */
+        if (FALSE && null !== $request) {
+            $test =  $request->getRequestUri();
+            $test = preg_replace('/\?.*/', '', $test);
+            $passed = preg_match('/\.(?:png|jpg|jpeg|gif|css|ico|js|woff|ttf)$/', $test);
+            if (preg_match('/\.(?:png|jpg|jpeg|gif|css|ico|js|woff|ttf)$/', $test)) {
+
+                $path_parts = pathinfo($test);
+                switch($path_parts["extension"]) {
+                    case "js":
+                        $this->_response->setHeader("CONTENT-TYPE", "text/javascript");
+                        break;
+                    case "css":
+                        $this->_response->setHeader("CONTENT-TYPE", "text/css");
+                        break;
+                }
+
+                
+                if (0 === strpos($test, '/admin/application')) {
+                    $test = substr($test, strlen('/admin'));
+                }
+
+                if (0 === strpos($test, '/admin/themes')) {
+                    $test2 = substr($test, strlen('/admin'));
+                    if(file_exists($test2)) {
+                        $test = $test2;
+                    }
+                }
+                
+                $filepath = BASE_DIR . $test;
+                
+                $this->_response->setBody(file_get_contents($filepath));
+
+                if ($this->returnResponse()) {
+                    return $this->_response;
+                }
+
+                $this->_response->sendResponse();
+                return;
+            }
+        }
+
         /**
          * Register request and response objects with plugin broker
          */

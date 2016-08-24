@@ -46,6 +46,13 @@ class Omeka_Application_Resource_Frontcontroller extends Zend_Application_Resour
             // Register API-specific controller logic.
             $front->registerPlugin(new Omeka_Controller_Plugin_Api);
         }
+
+        $test =  $request->getRequestUri();
+        $test = preg_replace('/\?.*/', '', $test);
+        $passed = preg_match('/\.(?:png|jpg|jpeg|gif|css|ico|js|woff|ttf)$/', $test);
+        if($passed) {
+            $front->registerPlugin(new Omeka_Controller_Plugin_StaticFiles);
+        }
         
         // Admin requests require a sligntly different controller environment.
         if ($front->getParam('admin')) {

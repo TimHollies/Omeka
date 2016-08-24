@@ -81,6 +81,10 @@ if ($dir = trim(dirname($_SERVER['SCRIPT_NAME']), '\,/')) {
     $base_path = '/';
 }
 
+if($dir === "admin") {
+    define('ADMIN', true);
+}
+
 // Remove the '/admin' part of the URL by regex, if necessary.
 if (defined('ADMIN')) {
     $dir = preg_replace('/(.*)admin$/', '$1', $dir, 1);

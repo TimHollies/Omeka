@@ -1,5 +1,13 @@
 # Welcome to Omeka
 
+## CHANGES
+Added horrendous changes to Zend/Controller/Front.php which allows static resources to be loaded correctly using the php static server.
+
+Added 'if dir=admin' to bootstrap.php and index.php to properly redirect to the admin pages.
+
+So far - seems a bit slow.
+
+
 © 2008-2015 [Roy Rosenzweig Center for History and New Media](http://chnm.gmu.edu/)
 
 This program is free software: you can redistribute it and/or modify it under 
